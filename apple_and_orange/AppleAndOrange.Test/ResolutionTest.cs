@@ -1,10 +1,19 @@
+using AppleAndOrange.Answer;
+using Xunit;
+
 namespace AppleAndOrange.Test
 {
     public class ResolutionTest
     {
-        public void Execute_When_Given_An_Array_Of_Apples_And_An_Array_Of_Orange_Should_Return_The_Number_Of_Fruits_That_Will_Fall_Inside_The_Home()
+        [Fact]
+        public void Execute_WhenStartPointOfHouseIs7EndPointOfHouseIs11AppleTreeLocationIs5OrangeTreeLocationIs15FirstFallenAppleLocationIsMinus2SecondFallenAppleLocationIsTwoThirthFallenAppleLocationIsOneFirstFallenOrangeLocationIsFiveAndSecondFallenOrangeLocationIsMinusSix_ShouldReturnOneAndOne()
         {
+            var resolution = new Resolution();
 
+            var (apples, oranges) = resolution.Execute(startPointOfHouse: 7, endPointOfHouse: 11, appleTreeLocation: 5, orangeTreeLocation: 15, fallenApples: new int[] { -2, 2, 1 }, fallenOranges: new int[] { 5, -6 });
+
+            Assert.Equal(1, oranges);
+            Assert.Equal(1, apples);
         }
     }
 }
