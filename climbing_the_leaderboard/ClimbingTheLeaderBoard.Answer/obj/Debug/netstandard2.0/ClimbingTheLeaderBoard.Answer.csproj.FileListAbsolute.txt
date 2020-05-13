@@ -1,0 +1,9 @@
+/home/flavio/dev/hackerrank/climbing_the_leaderboard/ClimbingTheLeaderBoard.Answer/bin/Debug/netstandard2.0/ClimbingTheLeaderBoard.Answer.deps.json
+/home/flavio/dev/hackerrank/climbing_the_leaderboard/ClimbingTheLeaderBoard.Answer/bin/Debug/netstandard2.0/ClimbingTheLeaderBoard.Answer.dll
+/home/flavio/dev/hackerrank/climbing_the_leaderboard/ClimbingTheLeaderBoard.Answer/bin/Debug/netstandard2.0/ClimbingTheLeaderBoard.Answer.pdb
+/home/flavio/dev/hackerrank/climbing_the_leaderboard/ClimbingTheLeaderBoard.Answer/obj/Debug/netstandard2.0/ClimbingTheLeaderBoard.Answer.csprojAssemblyReference.cache
+/home/flavio/dev/hackerrank/climbing_the_leaderboard/ClimbingTheLeaderBoard.Answer/obj/Debug/netstandard2.0/ClimbingTheLeaderBoard.Answer.csproj.CoreCompileInputs.cache
+/home/flavio/dev/hackerrank/climbing_the_leaderboard/ClimbingTheLeaderBoard.Answer/obj/Debug/netstandard2.0/ClimbingTheLeaderBoard.Answer.AssemblyInfoInputs.cache
+/home/flavio/dev/hackerrank/climbing_the_leaderboard/ClimbingTheLeaderBoard.Answer/obj/Debug/netstandard2.0/ClimbingTheLeaderBoard.Answer.AssemblyInfo.cs
+/home/flavio/dev/hackerrank/climbing_the_leaderboard/ClimbingTheLeaderBoard.Answer/obj/Debug/netstandard2.0/ClimbingTheLeaderBoard.Answer.dll
+/home/flavio/dev/hackerrank/climbing_the_leaderboard/ClimbingTheLeaderBoard.Answer/obj/Debug/netstandard2.0/ClimbingTheLeaderBoard.Answer.pdb

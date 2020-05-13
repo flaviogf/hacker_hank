@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "6wNRuBeO9+/lGT8+hB2S1ExfTFqVUrlagxj6bZd219jhExK6afqRSJXy6lcuD+5mkaabmlVzXKiMwI1unA52wg==",
+  "success": true,
+  "projectFilePath": "/home/flavio/dev/hackerrank/climbing_the_leaderboard/ClimbingTheLeaderBoard.Answer/ClimbingTheLeaderBoard.Answer.csproj",
+  "expectedPackageFiles": [
+    "/home/flavio/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "/home/flavio/.nuget/packages/netstandard.library/2.0.3/netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
