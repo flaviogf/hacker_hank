@@ -15,6 +15,7 @@
 ## :computer: Techs
 
 - C#
+- Ruby
 
 ## :memo: License
 
