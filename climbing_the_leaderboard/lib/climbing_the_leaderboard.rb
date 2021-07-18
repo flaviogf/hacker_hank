@@ -5,28 +5,23 @@ require 'pry'
 module ClimbingTheLeaderBoard
   class << self
     def execute(ranked, player)
-      result = []
+      positions = Array.new(ranked.size) { 1 }
 
-      player.each do |x|
-        position = 0
+      position = 1
 
-        counter = 0
-
-        (0...ranked.size).each do |i|
-          counter += 1 unless ranked[i - 1] == ranked[i]
-
-          if x == ranked[i] || x > ranked[i]
-            position = counter
-            break
-          end
-        end
-
-        position = counter + 1 if position.zero?
-
-        result << position
+      ranked.each_with_index do |_, i|
+        position += 1 if ranked[i] < ranked[i - 1]
+        positions[i] = position
       end
 
-      result
+      indexes = []
+
+      player.each do |p|
+        i = ranked.bsearch_index { |x| x <= p }
+        indexes << i
+      end
+
+      indexes.collect { |i| i.nil? ? positions.last + 1 : positions[i] }
     end
   end
 end
