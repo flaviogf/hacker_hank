@@ -18,10 +18,10 @@ module ClimbingTheLeaderBoard
 
       player.each_with_index do |p, i|
         index = ranked.bsearch_index { |x| x <= p }
-        indexes[i] = index
+        indexes[i] = index ? positions[index] : positions.last + 1
       end
 
-      indexes.collect { |i| i.nil? ? positions.last + 1 : positions[i] }
+      indexes
     end
   end
 end
