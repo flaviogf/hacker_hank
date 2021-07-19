@@ -5,7 +5,7 @@ require 'pry'
 module ClimbingTheLeaderBoard
   class << self
     def execute(ranked, player)
-      positions = Array.new(ranked.size) { 1 }
+      positions = Array.new(ranked.size)
 
       position = 1
 
@@ -14,11 +14,11 @@ module ClimbingTheLeaderBoard
         positions[i] = position
       end
 
-      indexes = []
+      indexes = Array.new(player.size)
 
-      player.each do |p|
-        i = ranked.bsearch_index { |x| x <= p }
-        indexes << i
+      player.each_with_index do |p, i|
+        index = ranked.bsearch_index { |x| x <= p }
+        indexes[i] = index
       end
 
       indexes.collect { |i| i.nil? ? positions.last + 1 : positions[i] }
