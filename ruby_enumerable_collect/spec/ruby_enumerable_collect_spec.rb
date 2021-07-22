@@ -3,13 +3,13 @@
 RSpec.describe RubyEnumerableCollect do
   describe '.execute' do
     subject do
-      RubyEnumerableCollect.execute(secret_message)
+      RubyEnumerableCollect.execute(secret_messages)
     end
 
-    let(:secret_message) do
-      'Jul qvq gur puvpxra pebff gur ebnq?'
+    let(:secret_messages) do
+      ['jul qvq gur puvpxra pebff gur ebnq?']
     end
 
-    it { is_expected.to eq('To get to the other side!') }
+    it { is_expected.to eq(['why did the chicken cross the road?']) }
   end
 end
