@@ -4,6 +4,10 @@ module RubyEnumerableIntroduction
   module_function
 
   def execute(colors)
-    colors.collect { |c| c }
+    result = []
+
+    colors.each { |it| result << it }
+
+    result
   end
 end
