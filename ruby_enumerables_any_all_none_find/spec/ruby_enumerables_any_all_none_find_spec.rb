@@ -39,4 +39,43 @@ RSpec.describe RubyEnumerablesAnyAllNoneFind do
       it { is_expected.to be false }
     end
   end
+
+  describe '.func_all' do
+    subject do
+      RubyEnumerablesAnyAllNoneFind.func_all(hash)
+    end
+
+    context 'when all values are Integers and are > 10' do
+      let(:hash) do
+        {
+          one: 11,
+          two: 12
+        }
+      end
+
+      it { is_expected.to be true }
+    end
+
+    context 'when not all values are Integers' do
+      let(:hash) do
+        {
+          one: 'one',
+          two: 2
+        }
+      end
+
+      it { is_expected.to be false }
+    end
+
+    context 'when not all values are > 10' do
+      let(:hash) do
+        {
+          one: 1,
+          two: 12
+        }
+      end
+
+      it { is_expected.to be false }
+    end
+  end
 end
