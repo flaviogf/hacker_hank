@@ -9,5 +9,9 @@ module RubyEnumerablesAnyAllNoneFind
     def func_all(hash)
       hash.all? { |_, value| value.is_a?(Integer) && value > 10 }
     end
+
+    def func_none(hash)
+      hash.none? { |_, value| value.nil? }
+    end
   end
 end

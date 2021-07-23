@@ -78,4 +78,32 @@ RSpec.describe RubyEnumerablesAnyAllNoneFind do
       it { is_expected.to be false }
     end
   end
+
+  describe '.func_none' do
+    subject do
+      RubyEnumerablesAnyAllNoneFind.func_none(hash)
+    end
+
+    context 'when all values are not nil' do
+      let(:hash) do
+        {
+          one: 10,
+          two: 'two'
+        }
+      end
+
+      it { is_expected.to be true }
+    end
+
+    context 'when at least one value is nil' do
+      let(:hash) do
+        {
+          one: nil,
+          two: 2
+        }
+      end
+
+      it { is_expected.to be false }
+    end
+  end
 end
