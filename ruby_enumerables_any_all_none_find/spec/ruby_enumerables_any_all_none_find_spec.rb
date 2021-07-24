@@ -106,4 +106,90 @@ RSpec.describe RubyEnumerablesAnyAllNoneFind do
       it { is_expected.to be false }
     end
   end
+
+  describe '.func_find' do
+    subject do
+      RubyEnumerablesAnyAllNoneFind.func_find(hash)
+    end
+
+    context 'when the [key, value] pair are both Integers and the value is < 20' do
+      let(:hash) do
+        {
+          1 => 1
+        }
+      end
+
+      it { is_expected.to eq([1, 1]) }
+    end
+
+    context 'when the key is not an Integer' do
+      let(:hash) do
+        {
+          'one' => 1
+        }
+      end
+
+      it { is_expected.to be_nil }
+    end
+
+    context 'when the value is not an Integer' do
+      let(:hash) do
+        {
+          1 => 'one'
+        }
+      end
+
+      it { is_expected.to be_nil }
+    end
+
+    context 'when the [key, value] pair are both Integers and the value is not < 20' do
+      let(:hash) do
+        {
+          1 => 21
+        }
+      end
+
+      it { is_expected.to be_nil }
+    end
+
+    context 'when the [key, value] pair are both Strings and the value starts with "a"' do
+      let(:hash) do
+        {
+          'a' => 'a'
+        }
+      end
+
+      it { is_expected.to eq(%w[a a]) }
+    end
+
+    context 'when the key is not a String' do
+      let(:hash) do
+        {
+          1 => 'a'
+        }
+      end
+
+      it { is_expected.to be_nil }
+    end
+
+    context 'when the value is not a String' do
+      let(:hash) do
+        {
+          'a' => 1
+        }
+      end
+
+      it { is_expected.to be_nil }
+    end
+
+    context 'when the [key, value] pair are both Strings and the value does not start with "a"' do
+      let(:hash) do
+        {
+          'a' => 'b'
+        }
+      end
+
+      it { is_expected.to be_nil }
+    end
+  end
 end
