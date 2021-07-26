@@ -9,5 +9,13 @@ module RubyMethodsKeywordArguments
     def c_to_k(temperature)
       temperature + 273.15
     end
+
+    def f_to_c(temperature)
+      (temperature - 32) * 5.0 / 9.0
+    end
+
+    def f_to_k(temperature)
+      (temperature - 32) * 5.0 / 9.0 + 273.15
+    end
   end
 end
