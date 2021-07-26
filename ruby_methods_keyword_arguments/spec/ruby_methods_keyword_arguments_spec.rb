@@ -48,4 +48,28 @@ RSpec.describe RubyMethodsKeywordArguments do
 
     it { is_expected.to be_within(0.1).of(260.928) }
   end
+
+  describe '.k_to_c' do
+    subject do
+      RubyMethodsKeywordArguments.k_to_c(temperature)
+    end
+
+    let(:temperature) do
+      10.0
+    end
+
+    it { is_expected.to eq(-263.15) }
+  end
+
+  describe '.k_to_f' do
+    subject do
+      RubyMethodsKeywordArguments.k_to_f(temperature)
+    end
+
+    let(:temperature) do
+      10.0
+    end
+
+    it { is_expected.to be_within(0.1).of(-441.67) }
+  end
 end
