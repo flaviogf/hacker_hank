@@ -1,6 +1,24 @@
 # frozen_string_literal: true
 
 RSpec.describe RubyMethodsKeywordArguments do
+  describe '.convert_temp' do
+    context 'when temperature: 0 input_scale: celsius and output_scale: kelvin' do
+      subject do
+        RubyMethodsKeywordArguments.convert_temp(0, input_scale: 'celsius', output_scale: 'kelvin')
+      end
+
+      it { is_expected.to eq(273.15) }
+    end
+
+    context 'when temperature: 0 input_scale: celsius and output_scale: fahrenheit' do
+      subject do
+        RubyMethodsKeywordArguments.convert_temp(0, input_scale: 'celsius', output_scale: 'fahrenheit')
+      end
+
+      it { is_expected.to eq(32.0) }
+    end
+  end
+
   describe '.c_to_f' do
     subject do
       RubyMethodsKeywordArguments.c_to_f(temperature)
