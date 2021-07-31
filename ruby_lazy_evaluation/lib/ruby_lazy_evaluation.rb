@@ -13,4 +13,8 @@ class Integer
 
     counter == 2
   end
+
+  def palindromic?
+    to_s == to_s.reverse
+  end
 end
