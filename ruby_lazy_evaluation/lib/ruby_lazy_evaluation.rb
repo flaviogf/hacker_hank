@@ -17,4 +17,8 @@ class Integer
   def palindromic?
     to_s == to_s.reverse
   end
+
+  def palindromic_prime?
+    prime? && palindromic?
+  end
 end
