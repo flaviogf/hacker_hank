@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 module RubyLazyEvaluation
+  class << self
+    def execute(number)
+      1.upto(Float::INFINITY).lazy.select(&:palindromic_prime?).first(number)
+    end
+  end
 end
 
 class Integer

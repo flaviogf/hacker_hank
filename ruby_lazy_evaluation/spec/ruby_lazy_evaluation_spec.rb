@@ -1,6 +1,24 @@
 # frozen_string_literal: true
 
 RSpec.describe RubyLazyEvaluation do
+  describe '.execute' do
+    context 'when enter 1' do
+      subject do
+        described_class.execute(1)
+      end
+
+      it { is_expected.to eq([2]) }
+    end
+
+    context 'when enter 5' do
+      subject do
+        described_class.execute(5)
+      end
+
+      it { is_expected.to eq([2, 3, 5, 7, 11]) }
+    end
+  end
+
   describe 'Integer#prime?' do
     context 'when check if 1 is a prime number' do
       subject do
