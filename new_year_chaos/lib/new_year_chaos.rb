@@ -9,9 +9,7 @@ module NewYearChaos
     queue.each_with_index do |number, index|
       expected = index + 1
 
-      next if number <= expected
-
-      current_bribe = number - expected
+      current_bribe = queue[expected...].count { |x| x < number }
 
       return 'Too chaotic' if current_bribe > 2
 
