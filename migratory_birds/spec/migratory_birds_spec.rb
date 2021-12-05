@@ -4,6 +4,7 @@ RSpec.describe MigratoryBirds do
   describe '.execute' do
     shared_examples 'expected result' do
       subject(:result) { described_class.execute(arr) }
+
       it { is_expected.to eq(expected_result) }
     end
 
