@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'pry'
+require 'pry-byebug'
+
 require 'day_of_the_programmer'
 
 RSpec.configure do |config|
