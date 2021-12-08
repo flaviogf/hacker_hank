@@ -18,7 +18,13 @@ module DayOfTheProgrammer
     end
 
     def leap?(year)
-      (year % 400 == 0) || (year % 4 == 0 && year % 100 != 0)
+      return (year % 400 == 0) || (year % 4 == 0 && year % 100 != 0) if gregorian?(year)
+
+      year % 4 == 0
+    end
+
+    def gregorian?(year)
+      year >= 1918
     end
   end
 end

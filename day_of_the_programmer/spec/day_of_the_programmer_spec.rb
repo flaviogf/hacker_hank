@@ -21,5 +21,12 @@ RSpec.describe DayOfTheProgrammer do
 
       include_examples 'expected date'
     end
+
+    context 'when year is 1800' do
+      let(:year) { 1800 }
+      let(:expected_date) { '12.09.1800' }
+
+      include_examples 'expected date'
+    end
   end
 end
