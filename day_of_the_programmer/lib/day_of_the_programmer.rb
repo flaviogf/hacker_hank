@@ -3,7 +3,7 @@
 module DayOfTheProgrammer
   class << self
     def execute(year)
-      day = number_of_days_in_a_year - sum_of_the_days_of_the_months_until_september
+      day = number_of_days_in_a_year - sum_of_the_days_of_the_months_until_september(year)
       "#{day}.09.#{year}"
     end
 
@@ -13,8 +13,12 @@ module DayOfTheProgrammer
       256
     end
 
-    def sum_of_the_days_of_the_months_until_september
-      243
+    def sum_of_the_days_of_the_months_until_september(year)
+      leap?(year) ? 244 : 243
+    end
+
+    def leap?(year)
+      false
     end
   end
 end
