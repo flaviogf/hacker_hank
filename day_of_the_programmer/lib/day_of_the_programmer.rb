@@ -14,6 +14,8 @@ module DayOfTheProgrammer
     end
 
     def sum_of_the_days_of_the_months_until_september(year)
+      return 230 if year == 1918
+
       leap?(year) ? 244 : 243
     end
 
