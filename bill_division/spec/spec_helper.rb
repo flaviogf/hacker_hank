@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'bill_division'
+require 'pry'
+require 'pry-byebug'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

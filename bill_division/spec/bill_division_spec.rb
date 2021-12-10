@@ -7,7 +7,7 @@ RSpec.describe BillDivision do
       let(:bill) { [3, 10, 2, 9] }
       let(:k) { 1 }
       let(:b) { 12 }
-      let(:expected_result) { '12' }
+      let(:expected_result) { '5' }
 
       it { is_expected.to eq(expected_result) }
     end
