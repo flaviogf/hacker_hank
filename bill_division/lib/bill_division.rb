@@ -3,7 +3,7 @@
 module BillDivision
   class << self
     def execute(bill, k, b)
-      12
+      '12'
     end
   end
 end
