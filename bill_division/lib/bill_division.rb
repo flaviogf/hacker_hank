@@ -7,12 +7,13 @@ module BillDivision
 
       bill.each_index do |i|
         next if i == k
+
         sum += bill[i]
       end
 
       result = b - sum / 2
 
-      result == 0 ? 'Bon Appetit' : String(result)
+      result.zero? ? 'Bon Appetit' : String(result)
     end
   end
 end
