@@ -24,6 +24,7 @@ func main() {
 	}
 
 	r := mux.NewRouter()
+	r.Handle("/", &SockMerchantHandler{}).Methods(http.MethodGet)
 
 	s := http.Server{
 		Handler:           r,
@@ -44,6 +45,12 @@ func main() {
 	s.Shutdown(ctx)
 
 	log.Println("Server finished")
+}
+
+type SockMerchantHandler struct{}
+
+func (s *SockMerchantHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("It works"))
 }
 
 func SockMerchant(_ int32, ar []int32) int32 {
