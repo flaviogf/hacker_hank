@@ -2,11 +2,14 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"net"
 	"net/http"
 	"os"
 	"os/signal"
+	"strconv"
+	"strings"
 	"syscall"
 	"time"
 
@@ -50,7 +53,20 @@ func main() {
 type SockMerchantHandler struct{}
 
 func (s *SockMerchantHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("It works"))
+	ar := []int32{}
+
+	for _, v := range strings.Split(r.FormValue("ar"), ",") {
+		value, err := strconv.ParseInt(v, 0, 32)
+
+		if err != nil {
+			http.Error(w, "Could not parse the value", http.StatusBadRequest)
+			return
+		}
+
+		ar = append(ar, int32(value))
+	}
+
+	fmt.Fprintf(w, "%d", SockMerchant(0, ar))
 }
 
 func SockMerchant(_ int32, ar []int32) int32 {
