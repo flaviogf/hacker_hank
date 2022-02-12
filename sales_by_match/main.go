@@ -7,5 +7,17 @@ func main() {
 }
 
 func SockMerchant(_ int32, ar []int32) int32 {
-	return 0
+	counter := map[int32]int32{}
+
+	for _, v := range ar {
+		counter[v] += 1
+	}
+
+	var result int32
+
+	for _, v := range counter {
+		result += v / 2
+	}
+
+	return result
 }
