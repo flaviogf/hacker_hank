@@ -102,6 +102,8 @@ func NewSockMerchantHandler() http.Handler {
 		[]string{"code", "method"},
 	)
 
+	prometheus.MustRegister(counter)
+
 	sockMerchantHandler := otelhttp.NewHandler(
 		promhttp.InstrumentHandlerCounter(
 			counter,
