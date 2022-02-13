@@ -40,23 +40,7 @@ func main() {
 
 	r := mux.NewRouter()
 
-	counter := prometheus.NewCounterVec(
-		prometheus.CounterOpts{
-			Name: "api_requests_total",
-			Help: "A counter for requests to the server",
-		},
-		[]string{"code", "method"},
-	)
-
-	sockMerchantHandler := otelhttp.NewHandler(
-		promhttp.InstrumentHandlerCounter(
-			counter,
-			&SockMerchantHandler{},
-		),
-		"sock-merchant",
-	)
-
-	r.Handle("/", sockMerchantHandler).Methods(http.MethodGet)
+	r.Handle("/", NewSockMerchantHandler()).Methods(http.MethodGet)
 	r.Handle("/metrics", promhttp.Handler())
 
 	s := http.Server{
@@ -108,6 +92,26 @@ func initTracer() *sdktrace.TracerProvider {
 }
 
 type SockMerchantHandler struct{}
+
+func NewSockMerchantHandler() http.Handler {
+	counter := prometheus.NewCounterVec(
+		prometheus.CounterOpts{
+			Name: "api_requests_total",
+			Help: "A counter for requests to the server",
+		},
+		[]string{"code", "method"},
+	)
+
+	sockMerchantHandler := otelhttp.NewHandler(
+		promhttp.InstrumentHandlerCounter(
+			counter,
+			&SockMerchantHandler{},
+		),
+		"sock-merchant",
+	)
+
+	return sockMerchantHandler
+}
 
 func (s *SockMerchantHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	ar := []int32{}
