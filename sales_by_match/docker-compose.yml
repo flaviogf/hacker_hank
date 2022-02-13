@@ -5,3 +5,18 @@ services:
     build: .
     ports:
       - 8080:8080
+  prometheus:
+    image: bitnami/prometheus:latest
+    ports:
+      - 9090:9090
+    volumes:
+      - './prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml'
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    command:
+      - '--path.rootfs=/host'
+    pid: host
+    volumes:
+      - '/:/host:ro,rslave'
+    ports:
+      - 9100:9100
