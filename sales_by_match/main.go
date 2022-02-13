@@ -21,6 +21,9 @@ import (
 	"go.opentelemetry.io/otel/sdk/resource"
 	sdktrace "go.opentelemetry.io/otel/sdk/trace"
 	semconv "go.opentelemetry.io/otel/semconv/v1.4.0"
+
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 func main() {
@@ -36,7 +39,25 @@ func main() {
 	}
 
 	r := mux.NewRouter()
-	r.Handle("/", otelhttp.NewHandler(&SockMerchantHandler{}, "sock-merchant")).Methods(http.MethodGet)
+
+	counter := prometheus.NewCounterVec(
+		prometheus.CounterOpts{
+			Name: "api_requests_total",
+			Help: "A counter for requests to the server",
+		},
+		[]string{"code", "method"},
+	)
+
+	sockMerchantHandler := otelhttp.NewHandler(
+		promhttp.InstrumentHandlerCounter(
+			counter,
+			&SockMerchantHandler{},
+		),
+		"sock-merchant",
+	)
+
+	r.Handle("/", sockMerchantHandler).Methods(http.MethodGet)
+	r.Handle("/metrics", promhttp.Handler())
 
 	s := http.Server{
 		Handler:           r,
