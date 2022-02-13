@@ -14,6 +14,7 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
+	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 )
 
 func main() {
@@ -27,7 +28,7 @@ func main() {
 	}
 
 	r := mux.NewRouter()
-	r.Handle("/", &SockMerchantHandler{}).Methods(http.MethodGet)
+	r.Handle("/", otelhttp.NewHandler(&SockMerchantHandler{}, "sock-merchant")).Methods(http.MethodGet)
 
 	s := http.Server{
 		Handler:           r,
