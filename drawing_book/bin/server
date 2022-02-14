@@ -2,10 +2,22 @@
 
 # frozen_string_literal: true
 
+lib_path = File.join(File.expand_path(__dir__), '..', 'lib')
+
+$LOAD_PATH.push(lib_path) unless $LOAD_PATH.include?(lib_path)
+
+require 'json'
 require 'sinatra'
+
+require 'drawing_book'
 
 set bind: '0.0.0.0'
 
 get '/' do
-  'Hello World'
+  number_of_pages = params['number_of_pages'].to_i
+  page_number_to_turn_on = params['page_number_to_turn_on'].to_i
+
+  result = DrawingBook.page_count(number_of_pages, page_number_to_turn_on)
+
+  JSON.dump(result)
 end
