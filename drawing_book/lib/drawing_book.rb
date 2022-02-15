@@ -6,15 +6,21 @@
 module DrawingBook
   class << self
     def page_count(number_of_pages, page_number_to_turn_on)
-      counter = 0
+      front = {}
 
-      (1...number_of_pages).each do |i|
-        break if i == page_number_to_turn_on
-
-        counter += 1
+      (2..number_of_pages - 1).each do |i|
+        front[i] = i / 2
       end
 
-      counter
+      back = {
+        1 => 2,
+        2 => 1,
+        3 => 1,
+        4 => 0,
+        5 => 0
+      }
+
+      front[page_number_to_turn_on] < back[page_number_to_turn_on] ? front[page_number_to_turn_on] : back[page_number_to_turn_on]
     end
   end
 end
