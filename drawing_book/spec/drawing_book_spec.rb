@@ -6,7 +6,6 @@ RSpec.describe DrawingBook do
   shared_examples 'expected result' do
     subject { described_class.page_count(number_of_pages, page_number_to_turn_on) }
 
-
     it { is_expected.to eq(expected_result) }
   end
 
