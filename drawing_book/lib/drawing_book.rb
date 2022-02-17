@@ -14,7 +14,7 @@ module DrawingBook
 
       back = {}
 
-      x = 0
+      x = number_of_pages.even? ? 1 : 0
 
       number_of_pages.downto(1).each do |i|
         back[i] = x / 2

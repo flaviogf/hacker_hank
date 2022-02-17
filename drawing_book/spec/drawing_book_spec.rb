@@ -24,4 +24,12 @@ RSpec.describe DrawingBook do
 
     include_examples 'expected result'
   end
+
+  context 'when number_of_pages=5, page_number_to_turn_on=4' do
+    let(:number_of_pages) { 6 }
+    let(:page_number_to_turn_on) { 5 }
+    let(:expected_result) { 1 }
+
+    include_examples 'expected result'
+  end
 end
