@@ -2,6 +2,9 @@
 
 source 'http://rubygems.org'
 
+gem 'opentelemetry-exporter-otlp'
+gem 'opentelemetry-instrumentation-all'
+gem 'opentelemetry-sdk'
 gem 'pry'
 gem 'pry-byebug'
 gem 'rspec'
