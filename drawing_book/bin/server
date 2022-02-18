@@ -8,7 +8,7 @@ $LOAD_PATH.push(lib_path) unless $LOAD_PATH.include?(lib_path)
 
 require 'json'
 require 'opentelemetry-sdk'
-require 'opentelemetry-exporter-otlp'
+require 'opentelemetry-exporter-jaeger'
 require 'opentelemetry-instrumentation-all'
 require 'sinatra'
 

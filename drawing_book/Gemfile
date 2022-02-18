@@ -2,7 +2,7 @@
 
 source 'http://rubygems.org'
 
-gem 'opentelemetry-exporter-otlp'
+gem 'opentelemetry-exporter-jaeger'
 gem 'opentelemetry-instrumentation-all'
 gem 'opentelemetry-sdk'
 gem 'pry'
