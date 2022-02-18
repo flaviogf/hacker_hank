@@ -1,0 +1,19 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/flaviogf/dev/hackerrank/drawing_book/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	//
+*_spec.rb	.projections.json	/^  "*_spec.rb": {$/;"	o
+DrawingBook	lib/drawing_book.rb	/^module DrawingBook$/;"	m
+DrawingBook	spec/drawing_book_spec.rb	/^RSpec.describe DrawingBook do$/;"	d
+page_count	lib/drawing_book.rb	/^    def page_count(number_of_pages, page_number_to_turn_on)$/;"	f	module:DrawingBook
+test.executable	.projections.json	/^    "test.executable": "docker-compose run --rm app bundle exec rspec"$/;"	s	object:*_spec.rb
+test.runner	.projections.json	/^    "test.runner": "rspec",$/;"	s	object:*_spec.rb
+when number_of_pages=5, page_number_to_turn_on=4	spec/drawing_book_spec.rb	/^  context 'when number_of_pages=5, page_number_to_turn_on=4' do$/;"	c
+when number_of_pages=6, page_number_to_turn_on=2	spec/drawing_book_spec.rb	/^  context 'when number_of_pages=6, page_number_to_turn_on=2' do$/;"	c
