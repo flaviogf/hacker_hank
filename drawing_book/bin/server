@@ -7,9 +7,17 @@ lib_path = File.join(File.expand_path(__dir__), '..', 'lib')
 $LOAD_PATH.push(lib_path) unless $LOAD_PATH.include?(lib_path)
 
 require 'json'
+require 'opentelemetry-sdk'
+require 'opentelemetry-exporter-otlp'
+require 'opentelemetry-instrumentation-all'
 require 'sinatra'
 
 require 'drawing_book'
+
+OpenTelemetry::SDK.configure do |c|
+  c.service_name = 'drawing_book'
+  c.use_all
+end
 
 set bind: '0.0.0.0'
 
