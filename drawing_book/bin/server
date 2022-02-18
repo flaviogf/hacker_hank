@@ -25,6 +25,11 @@ get '/' do
   number_of_pages = params['number_of_pages'].to_i
   page_number_to_turn_on = params['page_number_to_turn_on'].to_i
 
+  OpenTelemetry::Trace.current_span.add_attributes(
+    'number_of_pages' => number_of_pages.to_s,
+    'page_number_to_turn_on' => page_number_to_turn_on.to_s
+  )
+
   result = DrawingBook.page_count(number_of_pages, page_number_to_turn_on)
 
   JSON.dump(result)
