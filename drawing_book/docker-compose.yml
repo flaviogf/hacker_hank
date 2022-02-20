@@ -14,3 +14,9 @@ services:
     image: jaegertracing/all-in-one:latest
     ports:
       - 16686:16686
+  prometheus:
+    image: bitnami/prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml
