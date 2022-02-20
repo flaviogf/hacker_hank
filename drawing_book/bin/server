@@ -7,7 +7,8 @@ lib_path = File.join(File.expand_path(__dir__), '..', 'lib')
 $LOAD_PATH.push(lib_path) unless $LOAD_PATH.include?(lib_path)
 
 require 'json'
-require 'sinatra/base'
+require 'sinatra'
+require 'prometheus/middleware/collector'
 
 require 'drawing_book'
 
@@ -16,23 +17,20 @@ OpenTelemetry::SDK.configure do |c|
   c.use_all
 end
 
-# This is the DrawingBookApp startup class.
-class DrawingBookApp < Sinatra::Base
-  set bind: '0.0.0.0'
+set bind: '0.0.0.0'
 
-  get '/' do
-    number_of_pages = params['number_of_pages'].to_i
-    page_number_to_turn_on = params['page_number_to_turn_on'].to_i
+use Prometheus::Middleware::Collector
 
-    OpenTelemetry::Trace.current_span.add_attributes(
-      'number_of_pages' => number_of_pages.to_s,
-      'page_number_to_turn_on' => page_number_to_turn_on.to_s
-    )
+get '/' do
+  number_of_pages = params['number_of_pages'].to_i
+  page_number_to_turn_on = params['page_number_to_turn_on'].to_i
 
-    result = DrawingBook.page_count(number_of_pages, page_number_to_turn_on)
+  OpenTelemetry::Trace.current_span.add_attributes(
+    'number_of_pages' => number_of_pages.to_s,
+    'page_number_to_turn_on' => page_number_to_turn_on.to_s
+  )
 
-    JSON.dump(result)
-  end
+  result = DrawingBook.page_count(number_of_pages, page_number_to_turn_on)
 
-  run! if app_file == $PROGRAM_NAME
+  JSON.dump(result)
 end
