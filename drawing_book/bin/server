@@ -9,6 +9,7 @@ $LOAD_PATH.push(lib_path) unless $LOAD_PATH.include?(lib_path)
 require 'json'
 require 'sinatra'
 require 'prometheus/middleware/collector'
+require 'prometheus/middleware/exporter'
 
 require 'drawing_book'
 
@@ -19,7 +20,9 @@ end
 
 set bind: '0.0.0.0'
 
+use Rack::Deflater
 use Prometheus::Middleware::Collector
+use Prometheus::Middleware::Exporter
 
 get '/' do
   number_of_pages = params['number_of_pages'].to_i
