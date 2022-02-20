@@ -7,7 +7,7 @@ lib_path = File.join(File.expand_path(__dir__), '..', 'lib')
 $LOAD_PATH.push(lib_path) unless $LOAD_PATH.include?(lib_path)
 
 require 'json'
-require 'sinatra'
+require 'sinatra/base'
 
 require 'drawing_book'
 
@@ -16,18 +16,23 @@ OpenTelemetry::SDK.configure do |c|
   c.use_all
 end
 
-set bind: '0.0.0.0'
+# This is the DrawingBookApp startup class.
+class DrawingBookApp < Sinatra::Base
+  set bind: '0.0.0.0'
 
-get '/' do
-  number_of_pages = params['number_of_pages'].to_i
-  page_number_to_turn_on = params['page_number_to_turn_on'].to_i
+  get '/' do
+    number_of_pages = params['number_of_pages'].to_i
+    page_number_to_turn_on = params['page_number_to_turn_on'].to_i
 
-  OpenTelemetry::Trace.current_span.add_attributes(
-    'number_of_pages' => number_of_pages.to_s,
-    'page_number_to_turn_on' => page_number_to_turn_on.to_s
-  )
+    OpenTelemetry::Trace.current_span.add_attributes(
+      'number_of_pages' => number_of_pages.to_s,
+      'page_number_to_turn_on' => page_number_to_turn_on.to_s
+    )
 
-  result = DrawingBook.page_count(number_of_pages, page_number_to_turn_on)
+    result = DrawingBook.page_count(number_of_pages, page_number_to_turn_on)
 
-  JSON.dump(result)
+    JSON.dump(result)
+  end
+
+  run! if app_file == $PROGRAM_NAME
 end
