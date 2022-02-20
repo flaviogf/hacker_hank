@@ -8,9 +8,7 @@ require 'opentelemetry-instrumentation-all'
 module DrawingBook
   class << self
     def page_count(number_of_pages, page_number_to_turn_on)
-      tracer = OpenTelemetry.tracer_provider.tracer
-
-      tracer.in_span('page_count') do |span|
+      OpenTelemetry.tracer_provider.tracer.in_span('page_count') do |span|
         span.add_attributes(
           'number_of_pages' => number_of_pages.to_s,
           'page_number_to_turn_on' => page_number_to_turn_on.to_s
