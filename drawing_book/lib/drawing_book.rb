@@ -4,9 +4,7 @@ require 'opentelemetry-sdk'
 require 'opentelemetry-exporter-jaeger'
 require 'opentelemetry-instrumentation-all'
 
-# This is the main namespace for DrawingBook.
-#
-# It provides the page_count method.
+# This is the DrawingBook main namespace.
 module DrawingBook
   class << self
     def page_count(number_of_pages, page_number_to_turn_on)
