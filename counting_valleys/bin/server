@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+# frozen_string_literal: true
+
+lib_path = File.join(File.expand_path(__dir__), '..', 'lib')
+
+$LOAD_PATH.push(lib_path) unless $LOAD_PATH.include?(lib_path)
+
+require 'json'
+require 'sinatra'
+
+require 'counting_valleys'
+
+set bind: '0.0.0.0'
+
+get '/' do
+  steps = params['steps'].to_i
+  path = params['path'].to_s
+  result = CountingValleys.execute(steps, path)
+  JSON.dump(result)
+end

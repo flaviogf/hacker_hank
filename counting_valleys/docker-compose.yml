@@ -4,5 +4,7 @@ services:
   app:
     build: .
     image: counting_valleys:latest
+    ports:
+      - 4567:4567
     volumes:
       - ./:/www
