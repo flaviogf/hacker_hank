@@ -4,12 +4,18 @@ require 'spec_helper'
 
 RSpec.describe CountingValleys do
   describe '.execute' do
-    subject { described_class.execute(steps, path) }
+    shared_examples 'expected result' do
+      subject { described_class.execute(steps, path) }
 
-    let(:steps) { 8 }
-    let(:path) { 'UDDDUDUU' }
-    let(:expected_result) { 1 }
+      it { is_expected.to eq(expected_result) }
+    end
 
-    it { is_expected.to eq(expected_result) }
+    context 'when steps=8 path=UDDDUDUU' do
+      let(:steps) { 8 }
+      let(:path) { 'UDDDUDUU' }
+      let(:expected_result) { 1 }
+
+      include_examples 'expected result'
+    end
   end
 end
