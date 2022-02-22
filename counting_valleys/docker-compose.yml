@@ -4,3 +4,5 @@ services:
   app:
     build: .
     image: counting_valleys:latest
+    volumes:
+      - ./:/www
