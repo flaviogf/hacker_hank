@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: counting-valleys-deployment
+  labels:
+    app: counting-valleys
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: counting-valleys
+  template:
+    metadata:
+      labels:
+        app: counting-valleys
+    spec:
+      containers:
+        - name: counting-valleys
+          image: flaviogf/counting_valleys:0.0.1
+          ports:
+            - containerPort: 4567
