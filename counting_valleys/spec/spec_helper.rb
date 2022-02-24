@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'byebug'
+
 require 'counting_valleys'
 
 RSpec.configure do |config|

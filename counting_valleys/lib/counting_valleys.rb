@@ -4,7 +4,18 @@
 module CountingValleys
   class << self
     def execute(steps, path)
-      1
+      counter = 0
+      level = 0
+
+      (0...steps).each do |i|
+        step = path[i]
+
+        incr = step == 'U' ? +1 : -1
+
+        level += incr
+      end
+
+      counter
     end
   end
 end
