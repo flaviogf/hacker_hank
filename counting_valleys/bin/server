@@ -7,9 +7,17 @@ lib_path = File.join(File.expand_path(__dir__), '..', 'lib')
 $LOAD_PATH.push(lib_path) unless $LOAD_PATH.include?(lib_path)
 
 require 'json'
+require 'opentelemetry/exporter/otlp'
+require 'opentelemetry/instrumentation/all'
+require 'opentelemetry/sdk'
 require 'sinatra'
 
 require 'counting_valleys'
+
+OpenTelemetry::SDK.configure do |c|
+  c.service_name = 'counting-valleys'
+  c.use_all
+end
 
 set bind: '0.0.0.0'
 

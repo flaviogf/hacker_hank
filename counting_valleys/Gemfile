@@ -3,5 +3,8 @@
 source 'https://rubygems.org'
 
 gem 'byebug'
+gem 'opentelemetry-exporter-otlp'
+gem 'opentelemetry-instrumentation-all'
+gem 'opentelemetry-sdk'
 gem 'rspec'
 gem 'sinatra'
