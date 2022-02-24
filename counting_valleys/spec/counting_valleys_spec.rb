@@ -17,5 +17,13 @@ RSpec.describe CountingValleys do
 
       include_examples 'expected result'
     end
+
+    context 'when steps=12 path=DDUUDDUDUUU' do
+      let(:steps) { 12 }
+      let(:path) { 'DDUUDDUDUUU' }
+      let(:expected_result) { 2 }
+
+      include_examples 'expected result'
+    end
   end
 end
