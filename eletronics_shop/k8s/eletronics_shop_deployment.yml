@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Job
+metadata:
+  name: eletronics-shop-job
+spec:
+  template:
+    spec:
+      containers:
+        - name: eletronics-shop
+          image: flaviogf/eletronics_shop:0.0.1

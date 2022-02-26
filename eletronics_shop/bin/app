@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+# frozen_string_literal: true
+
+lib_path = File.join(File.expand_path(__dir__), '..', 'lib')
+
+$LOAD_PATH.push(lib_path) unless $LOAD_PATH.include?(lib_path)
+
+require 'eletronics_shop'
+
+orders = [
+  { keyboards: [3, 1], drivers: [5, 2, 8], budget: 10 },
+  { keyboards: [4], drivers: [5], budget: 5 },
+  { keyboards: [40, 50, 60], drivers: [5, 8, 12], budget: 60 }
+]
+
+orders.each do |order|
+  pp EletronicsShop.get_money_spent(order[:keyboards], order[:drivers], order[:budget])
+end
