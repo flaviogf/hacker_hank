@@ -3,7 +3,7 @@
 # This is the EletronicsShop main namespace
 module EletronicsShop
   class << self
-    def get_money_spent(keyboards, drivers, budget)
+    def get_money_spent(_keyboards, _drivers, _budget)
       58
     end
   end
