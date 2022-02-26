@@ -3,3 +3,4 @@ WORKDIR /www
 COPY Gemfile* ./
 RUN bundle
 COPY . ./
+CMD ["bin/app"]
