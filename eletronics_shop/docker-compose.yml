@@ -6,3 +6,5 @@ services:
     image: eletronics_shop
     volumes:
       - ./:/www
+    environment:
+      ORDERS_PATH: /www/data/orders.csv

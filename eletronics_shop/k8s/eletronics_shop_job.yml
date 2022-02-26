@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: eletronics-shop-job
+  labels:
+    app: eletronics-shop
+spec:
+  template:
+    metadata:
+      labels:
+        app: eletronics-shop
+    spec:
+      containers:
+        - name: eletronics-shop
+          image: flaviogf/eletronics_shop:0.0.3
+          env:
+            - name: ORDERS_PATH
+              valueFrom:
+                configMapKeyRef:
+                  name: eletronics-shop-config-map
+                  key: ORDERS_PATH
+          volumeMounts:
+            - name: data
+              mountPath: /www/data
+              readOnly: true
+      volumes:
+        - name: data
+          configMap:
+            name: eletronics-shop-config-map
+      restartPolicy: Never
