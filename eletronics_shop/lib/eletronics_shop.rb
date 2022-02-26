@@ -3,8 +3,18 @@
 # This is the EletronicsShop main namespace
 module EletronicsShop
   class << self
-    def get_money_spent(_keyboards, _drivers, _budget)
-      58
+    def get_money_spent(keyboards, drivers, budget)
+      result = -1
+
+      keyboards.each do |k|
+        drivers.each do |d|
+          sum = k + d
+
+          result = sum if sum <= budget && result < sum
+        end
+      end
+
+      result
     end
   end
 end
