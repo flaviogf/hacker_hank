@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: eletronics-shop
-          image: flaviogf/eletronics_shop:0.0.3
+          image: flaviogf/eletronics_shop:0.0.4
           env:
             - name: ORDERS_PATH
               valueFrom:
