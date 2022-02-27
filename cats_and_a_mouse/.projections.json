@@ -1,0 +1,6 @@
+{
+  "*_spec.rb": {
+    "test.runner": "rspec",
+    "test.executable": "docker-compose run --rm app bundle exec rspec"
+  }
+}
