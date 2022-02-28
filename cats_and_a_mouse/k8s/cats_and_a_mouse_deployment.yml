@@ -19,3 +19,9 @@ spec:
           image: flaviogf/cats_and_a_mouse:0.0.3
           ports:
             - containerPort: 4567
+          livenessProbe:
+            httpGet:
+              path: /healthy
+              port: 4567
+            initialDelaySeconds: 1
+            periodSeconds: 5
