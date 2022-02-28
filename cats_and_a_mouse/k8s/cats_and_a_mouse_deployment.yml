@@ -5,6 +5,7 @@ metadata:
   labels:
     app: cats-and-a-mouse
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: cats-and-a-mouse
