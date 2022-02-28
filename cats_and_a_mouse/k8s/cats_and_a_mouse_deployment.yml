@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cats-and-a-mouse-deployment
+  labels:
+    app: cats-and-a-mouse
+spec:
+  selector:
+    matchLabels:
+      app: cats-and-a-mouse
+  template:
+    metadata:
+      labels:
+        app: cats-and-a-mouse
+    spec:
+      containers:
+        - name: cats-and-a-mouse
+          image: flaviogf/cats_and_a_mouse:0.0.3
+          ports:
+            - containerPort: 4567
