@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'byebug'
+
 require 'cats_and_a_mouse'
 
 RSpec.configure do |config|
