@@ -13,3 +13,11 @@ kubectl -n default port-forward $POD_NAME 9090
 ```
 sum(container_memory_usage_bytes{namespace="default", container="cats-and-a-mouse"}) by (name)
 ```
+
+# Query histogram quantitile
+
+```
+histogram_quantile(0.95, sum(rate(http_server_request_duration_seconds_bucket{app="cats-and-a-mouse"}[5m])) by (le))
+
+histogram_quantile(0.95, sum(rate(http_server_request_duration_seconds_bucket{app="cats-and-a-mouse"}[5m])) by (le, path))
+```

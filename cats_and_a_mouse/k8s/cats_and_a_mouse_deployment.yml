@@ -11,12 +11,16 @@ spec:
       app: cats-and-a-mouse
   template:
     metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /metrics
+        prometheus.io/port: "4567"
       labels:
         app: cats-and-a-mouse
     spec:
       containers:
         - name: cats-and-a-mouse
-          image: flaviogf/cats_and_a_mouse:0.0.4
+          image: flaviogf/cats_and_a_mouse:0.0.5
           ports:
             - containerPort: 4567
           livenessProbe:
