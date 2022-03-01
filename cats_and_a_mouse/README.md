@@ -21,3 +21,9 @@ histogram_quantile(0.95, sum(rate(http_server_request_duration_seconds_bucket{ap
 
 histogram_quantile(0.95, sum(rate(http_server_request_duration_seconds_bucket{app="cats-and-a-mouse"}[5m])) by (le, path))
 ```
+
+# Query requests total
+
+```
+sum(irate(http_server_requests_total[5m])) by(app)
+```
