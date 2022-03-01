@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: cats-and-a-mouse
-          image: flaviogf/cats_and_a_mouse:0.0.3
+          image: flaviogf/cats_and_a_mouse:0.0.4
           ports:
             - containerPort: 4567
           livenessProbe:
