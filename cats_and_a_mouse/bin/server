@@ -2,10 +2,26 @@
 
 # frozen_string_literal: true
 
+lib_path = File.join(File.expand_path(__dir__), '..', 'lib')
+
+$LOAD_PATH.push(lib_path) unless $LOAD_PATH.include?(lib_path)
+
 require 'json'
 require 'sinatra'
 
+require 'cats_and_a_mouse'
+
 set bind: '0.0.0.0'
+
+get '/' do
+  cat_a = params['cat_a'].to_i
+  cat_b = params['cat_b'].to_i
+  mouse = params['mouse'].to_i
+
+  result = CatsAndAMouse.execute(cat_a, cat_b, mouse)
+
+  JSON.dump({ data: result })
+end
 
 get '/healthy' do
   JSON.dump({ ok: true })
