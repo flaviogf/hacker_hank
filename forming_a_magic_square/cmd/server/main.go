@@ -1,7 +1,12 @@
 package main
 
-import "github.com/flaviogf/hackerrank/forming_a_magic_square/internal/services"
+import (
+	"fmt"
+
+	"github.com/flaviogf/hackerrank/forming_a_magic_square/internal/services"
+)
 
 func main() {
-	services.FormingMagicSquare()
+	result := services.FormingMagicSquare([][]int32{})
+	fmt.Println(result)
 }
