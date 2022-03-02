@@ -1,7 +1,7 @@
 package main
 
-import "fmt"
+import "github.com/flaviogf/hackerrank/forming_a_magic_square/internal/services"
 
 func main() {
-	fmt.Println("It works")
+	services.FormingMagicSquare()
 }
