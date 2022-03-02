@@ -1,7 +1,5 @@
 package services
 
-import "fmt"
-
-func FormingMagicSquare() {
-	fmt.Println("OK")
+func FormingMagicSquare(s [][]int32) int32 {
+	return int32(1)
 }
