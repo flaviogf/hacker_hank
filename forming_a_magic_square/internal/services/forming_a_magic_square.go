@@ -21,7 +21,7 @@ func FormingMagicSquare(s [][]int32) int32 {
 					usedNumbers[j] = true
 				}
 
-				continue
+				break
 			}
 
 			incr := MAGIC_NUMBER - rowSum
@@ -34,6 +34,12 @@ func FormingMagicSquare(s [][]int32) int32 {
 			cost := int32(math.Abs(float64(value) - float64(next)))
 			totalCost += cost
 			row[i] = next
+
+			for _, j := range row {
+				usedNumbers[j] = true
+			}
+
+			break
 		}
 	}
 
