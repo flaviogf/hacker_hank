@@ -17,6 +17,14 @@ func TestFormingMagicSquare(t *testing.T) {
 			},
 			ExpectedResult: 1,
 		},
+		{
+			Input: [][]int32{
+				[]int32{4, 8, 2},
+				[]int32{4, 5, 7},
+				[]int32{6, 1, 6},
+			},
+			ExpectedResult: 4,
+		},
 	}
 
 	for i, tt := range tableTests {
