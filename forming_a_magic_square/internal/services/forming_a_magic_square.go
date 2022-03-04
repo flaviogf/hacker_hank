@@ -1,9 +1,9 @@
 package services
 
-const MAGIC_NUMBER = 15
+const MAGIC = 15
 
 func FormingMagicSquare(s [][]int32) int32 {
-	var totalCost int32
+	var cost int32
 
-	return totalCost
+	return cost
 }
