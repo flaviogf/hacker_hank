@@ -31,7 +31,7 @@ func main() {
 	r := mux.NewRouter()
 
 	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		numbers, err := fecthNumbers(r.URL.Query()["numbers"])
+		numbers, err := fetchNumbers(r.URL.Query()["numbers"])
 
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusBadRequest)
@@ -70,7 +70,7 @@ func main() {
 	s.Shutdown(ctx)
 }
 
-func fecthNumbers(numbersStr []string) ([]int32, error) {
+func fetchNumbers(numbersStr []string) ([]int32, error) {
 	numbers := make([]int32, len(numbersStr))
 
 	for i, v := range numbersStr {
