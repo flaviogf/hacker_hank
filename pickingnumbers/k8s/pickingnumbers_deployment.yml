@@ -19,6 +19,6 @@ spec:
     spec:
       containers:
         - name: pickingnumbers
-          image: flaviogf/pickingnumbers:0.0.2
+          image: flaviogf/pickingnumbers:0.0.3
           ports:
             - containerPort: 8080
