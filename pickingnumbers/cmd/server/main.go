@@ -16,6 +16,7 @@ import (
 
 	"github.com/flaviogf/hackerrank/pickingnumbers/internal/pickingnumbers"
 	"github.com/gorilla/mux"
+	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
@@ -29,9 +30,18 @@ func main() {
 		log.Fatal(err)
 	}
 
+	pickingnumbersRequestsTotal := prometheus.NewCounter(prometheus.CounterOpts{
+		Name: "pickingnumbers_handler_requests_total",
+		Help: "Total number of requests",
+	})
+
+	prometheus.MustRegister(pickingnumbersRequestsTotal)
+
 	r := mux.NewRouter()
 
 	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		pickingnumbersRequestsTotal.Inc()
+
 		numbers, err := fetchNumbers(r.URL.Query()["numbers"])
 
 		if err != nil {
