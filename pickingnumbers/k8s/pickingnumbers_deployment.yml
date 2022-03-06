@@ -2,10 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pickingnumbers-deployment
-  annotations:
-    prometheus.io/scrape: "true"
-    prometheus.io/path: /metrics
-    prometheus.io/port: "8080"
   labels:
     app: pickingnumbers
 spec:
@@ -14,11 +10,15 @@ spec:
       app: pickingnumbers
   template:
     metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /metrics
+        prometheus.io/port: "8080"
       labels:
         app: pickingnumbers
     spec:
       containers:
         - name: pickingnumbers
-          image: flaviogf/pickingnumbers:0.0.1
+          image: flaviogf/pickingnumbers:0.0.2
           ports:
             - containerPort: 8080
