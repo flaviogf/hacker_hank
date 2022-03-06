@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pickingnumbers-deployment
+  labels:
+    app: pickingnumbers
+spec:
+  selector:
+    matchLabels:
+      app: pickingnumbers
+  template:
+    metadata:
+      labels:
+        app: pickingnumbers
+    spec:
+      containers:
+        - name: pickingnumbers
+          image: flaviogf/pickingnumbers:0.0.1
+          ports:
+            - containerPort: 8080
