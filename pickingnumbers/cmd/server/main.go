@@ -16,6 +16,7 @@ import (
 
 	"github.com/flaviogf/hackerrank/pickingnumbers/internal/pickingnumbers"
 	"github.com/gorilla/mux"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 func main() {
@@ -48,6 +49,8 @@ func main() {
 
 		enc.Encode(body)
 	})
+
+	r.Handle("/metrics", promhttp.Handler())
 
 	s := http.Server{
 		Handler:           r,
