@@ -30,35 +30,9 @@ func main() {
 		log.Fatal(err)
 	}
 
-	pickingnumbersRequestsTotal := prometheus.NewCounter(prometheus.CounterOpts{
-		Name: "pickingnumbers_handler_requests_total",
-		Help: "Total number of requests",
-	})
-
-	prometheus.MustRegister(pickingnumbersRequestsTotal)
-
 	r := mux.NewRouter()
 
-	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		pickingnumbersRequestsTotal.Inc()
-
-		numbers, err := fetchNumbers(r.URL.Query()["numbers"])
-
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusBadRequest)
-			return
-		}
-
-		result := pickingnumbers.PickingNumbers(numbers)
-
-		enc := json.NewEncoder(w)
-
-		body := struct {
-			Data int32 `json:data`
-		}{Data: result}
-
-		enc.Encode(body)
-	})
+	r.Handle("", pickingNumbersHandler())
 
 	r.Handle("/metrics", promhttp.Handler())
 
@@ -81,6 +55,36 @@ func main() {
 	<-doneCh
 
 	s.Shutdown(ctx)
+}
+
+func pickingNumbersHandler() http.Handler {
+	pickingnumbersRequestsTotal := prometheus.NewCounter(prometheus.CounterOpts{
+		Name: "pickingnumbers_handler_requests_total",
+		Help: "Total number of requests",
+	})
+
+	prometheus.MustRegister(pickingnumbersRequestsTotal)
+
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		pickingnumbersRequestsTotal.Inc()
+
+		numbers, err := fetchNumbers(r.URL.Query()["numbers"])
+
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+
+		result := pickingnumbers.PickingNumbers(numbers)
+
+		enc := json.NewEncoder(w)
+
+		body := struct {
+			Data int32 `json:data`
+		}{Data: result}
+
+		enc.Encode(body)
+	})
 }
 
 func fetchNumbers(numbersStr []string) ([]int32, error) {
