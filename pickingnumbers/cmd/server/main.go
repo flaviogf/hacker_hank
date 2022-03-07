@@ -32,8 +32,7 @@ func main() {
 
 	r := mux.NewRouter()
 
-	r.Handle("", pickingNumbersHandlerWithMetrics(pickingNumbersHandler()))
-
+	r.Handle("/", pickingNumbersHandlerWithMetrics(pickingNumbersHandler()))
 	r.Handle("/metrics", promhttp.Handler())
 
 	s := http.Server{
