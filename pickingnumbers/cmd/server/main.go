@@ -32,7 +32,7 @@ func main() {
 
 	r := mux.NewRouter()
 
-	r.Handle("", pickingNumbersHandler())
+	r.Handle("", pickingNumbersHandlerWithMetrics(pickingNumbersHandler()))
 
 	r.Handle("/metrics", promhttp.Handler())
 
@@ -57,7 +57,7 @@ func main() {
 	s.Shutdown(ctx)
 }
 
-func pickingNumbersHandler() http.Handler {
+func pickingNumbersHandlerWithMetrics(next http.Handler) http.Handler {
 	pickingnumbersRequestsTotal := prometheus.NewCounter(prometheus.CounterOpts{
 		Name: "pickingnumbers_handler_requests_total",
 		Help: "Total number of requests",
@@ -68,6 +68,12 @@ func pickingNumbersHandler() http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		pickingnumbersRequestsTotal.Inc()
 
+		next.ServeHTTP(w, r)
+	})
+}
+
+func pickingNumbersHandler() http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		numbers, err := fetchNumbers(r.URL.Query()["numbers"])
 
 		if err != nil {
