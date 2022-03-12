@@ -58,11 +58,21 @@ func NewHurdleRaceHandlerWithMetrics(next http.Handler) http.Handler {
 		Name: "hurdle_race_handler_requests_total",
 	})
 
+	requests_latency := prometheus.NewHistogram(prometheus.HistogramOpts{
+		Name: "hurdle_race_handler_requests_latency",
+	})
+
 	prometheus.MustRegister(requests_total)
+	prometheus.MustRegister(requests_latency)
 
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		start := time.Now()
+
 		requests_total.Inc()
+
 		next.ServeHTTP(w, r)
+
+		requests_latency.Observe(time.Now().Sub(start).Seconds())
 	})
 }
 
