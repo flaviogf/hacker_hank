@@ -11,6 +11,7 @@ import (
 
 	hurdlerace "github.com/flaviogf/hackerrank/hurdlerace/internal"
 	"github.com/gorilla/mux"
+	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
@@ -26,7 +27,7 @@ func main() {
 
 	r := mux.NewRouter()
 
-	r.Handle("/", NewHurdleRaceHandler()).Methods(http.MethodPost)
+	r.Handle("/", NewHurdleRaceHandlerWithMetrics(NewHurdleRaceHandler())).Methods(http.MethodPost)
 	r.Handle("/metrics", promhttp.Handler())
 
 	s := http.Server{
@@ -51,6 +52,19 @@ func main() {
 }
 
 type HurdleRaceHandler struct{}
+
+func NewHurdleRaceHandlerWithMetrics(next http.Handler) http.Handler {
+	requests_total := prometheus.NewCounter(prometheus.CounterOpts{
+		Name: "hurdle_race_handler_requests_total",
+	})
+
+	prometheus.MustRegister(requests_total)
+
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		requests_total.Inc()
+		next.ServeHTTP(w, r)
+	})
+}
 
 func NewHurdleRaceHandler() http.Handler {
 	return &HurdleRaceHandler{}
