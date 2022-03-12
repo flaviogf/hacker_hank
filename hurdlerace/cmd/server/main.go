@@ -23,6 +23,8 @@ func main() {
 
 	r := mux.NewRouter()
 
+	r.Handle("/", &HurdleRaceHandler{})
+
 	s := http.Server{
 		Handler:           r,
 		IdleTimeout:       5 * time.Second,
@@ -42,4 +44,10 @@ func main() {
 	<-doneCh
 
 	s.Shutdown(ctx)
+}
+
+type HurdleRaceHandler struct{}
+
+func (hr *HurdleRaceHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(200)
 }
