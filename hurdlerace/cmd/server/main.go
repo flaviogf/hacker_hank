@@ -2,12 +2,14 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"log"
 	"net"
 	"net/http"
 	"os"
 	"time"
 
+	hurdlerace "github.com/flaviogf/hackerrank/hurdlerace/internal"
 	"github.com/gorilla/mux"
 )
 
@@ -23,7 +25,7 @@ func main() {
 
 	r := mux.NewRouter()
 
-	r.Handle("/", &HurdleRaceHandler{})
+	r.Handle("/", &HurdleRaceHandler{}).Methods(http.MethodPost)
 
 	s := http.Server{
 		Handler:           r,
@@ -48,6 +50,25 @@ func main() {
 
 type HurdleRaceHandler struct{}
 
+type HurdleRaceRequest struct {
+	K      int32   `json:"k"`
+	Height []int32 `json:"height"`
+}
+
+type HurdleRaceResponse struct {
+	Data int32 `json:"data"`
+}
+
 func (hr *HurdleRaceHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(200)
+	defer r.Body.Close()
+
+	dec := json.NewDecoder(r.Body)
+	var req HurdleRaceRequest
+	dec.Decode(&req)
+
+	data := hurdlerace.HurdleRace(req.K, req.Height)
+
+	resp := HurdleRaceResponse{data}
+	enc := json.NewEncoder(w)
+	enc.Encode(resp)
 }
