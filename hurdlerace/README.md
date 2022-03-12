@@ -2,7 +2,7 @@
 
 ## API
 
-### /
+### `/`
 
 Request:
 ```json
