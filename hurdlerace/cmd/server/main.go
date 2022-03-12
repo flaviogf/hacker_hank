@@ -26,7 +26,7 @@ func main() {
 
 	r := mux.NewRouter()
 
-	r.Handle("/", &HurdleRaceHandler{}).Methods(http.MethodPost)
+	r.Handle("/", NewHurdleRaceHandler()).Methods(http.MethodPost)
 	r.Handle("/metrics", promhttp.Handler())
 
 	s := http.Server{
@@ -51,6 +51,10 @@ func main() {
 }
 
 type HurdleRaceHandler struct{}
+
+func NewHurdleRaceHandler() http.Handler {
+	return &HurdleRaceHandler{}
+}
 
 type HurdleRaceRequest struct {
 	K      int32   `json:"k"`
