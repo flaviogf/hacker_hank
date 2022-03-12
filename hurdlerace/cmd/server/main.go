@@ -11,6 +11,7 @@ import (
 
 	hurdlerace "github.com/flaviogf/hackerrank/hurdlerace/internal"
 	"github.com/gorilla/mux"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 func main() {
@@ -26,6 +27,7 @@ func main() {
 	r := mux.NewRouter()
 
 	r.Handle("/", &HurdleRaceHandler{}).Methods(http.MethodPost)
+	r.Handle("/metrics", promhttp.Handler())
 
 	s := http.Server{
 		Handler:           r,
