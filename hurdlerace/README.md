@@ -1,6 +1,4 @@
-# HurdleRace
-
-## API
+## HurdleRace API
 
 ### `/`
 
