@@ -1,12 +1,10 @@
 # HurdleRace
 
-## Path
-```
-/
-```
+## API
 
-## Request body
+### /
 
+Request:
 ```json
 {
   "k": 4,
@@ -14,15 +12,14 @@
 }
 ```
 
-## Response body
+Response:
 ```json
 {
   "data": 2,
 }
 ```
 
-## curl
-
+Example:
 ```sh
-curl 'http://localhost:8080' -H 'Content-Type: application/json' --data '{"k": 4, "height": [1, 6]}'
+curl 'http://localhost:8080' -H 'Content-Type: application/json' --data '{"k": 4, "height": [1, 6, 5, 1]}'
 ```
