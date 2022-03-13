@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hurdlerace-deployment
+  labels:
+    app: hurdlerace
+spec:
+  selector:
+    matchLabels:
+      app: hurdlerace
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /metrics
+        prometheus.io/port: "8080"
+      labels:
+        app: hurdlerace
+    spec:
+      containers:
+        - name: hurdlerace
+          image: flaviogf/hurdlerace:0.0.2
+          ports:
+            - containerPort: 8080
