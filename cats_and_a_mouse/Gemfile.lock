@@ -5,7 +5,8 @@ GEM
     diff-lcs (1.5.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
-    rack (2.2.3)
+    prometheus-client (4.0.0)
+    rack (2.2.3.1)
     rack-protection (2.2.0)
       rack
     rspec (3.11.0)
@@ -34,6 +35,8 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  prometheus-client
+  rack
   rspec
   sinatra
 
